@@ -1,0 +1,14 @@
+{
+  "name": "github-url-resolver-action",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "private": true,
+  "scripts": {},
+  "keywords": [],
+  "author": "peter-murray",
+  "license": "MIT",
+  "dependencies": {
+    "@actions/core": "^1.10.1"
+  }
+}
