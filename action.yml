@@ -1,0 +1,16 @@
+name: GitHub instance URL resovler
+description: A GitHub Action that can resolve the URLs for services on an instance
+
+branding:
+  icon: feather
+  color: white
+
+inputs:
+  github_base_url:
+    description: The base URL for the GitHub instance.
+    type: string
+    default: ${{ env.GITHUB_SERVER_URL }}
+
+runs:
+  using: node20
+  main: dist/index.js

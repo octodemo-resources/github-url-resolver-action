@@ -4,11 +4,20 @@
   "description": "",
   "main": "index.js",
   "private": true,
-  "scripts": {},
+  "scripts": {
+    "base-build": "npm ci && tsc",
+    "build": "npm run base-build && npm exec -- @vercel/ncc build --source-map lib/src/action.js -o dist",
+    "test": "vitest --run"
+  },
   "keywords": [],
   "author": "peter-murray",
   "license": "MIT",
   "dependencies": {
     "@actions/core": "^1.10.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.3",
+    "vitest": "^2.0.2",
+    "@vercel/ncc": "^0.38.1"
   }
 }
