@@ -9,7 +9,8 @@ inputs:
   github_base_url:
     description: The base URL for the GitHub instance.
     type: string
-    default: ${{ env.GITHUB_SERVER_URL }}
+    required: true
+    default: ${{ github.server_url }}
 
 runs:
   using: node20
