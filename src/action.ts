@@ -12,6 +12,11 @@ async function run() {
     setOutput('api_url', result.api_url);
     setOutput('terraform_api_url', result.terraform_api_url);
     setOutput('container_registry_url', result.container_registry_url);
+
+    if (result.tenant_name) {
+      setOutput('tenant_name', result.tenant_name);
+      setOutput('tenant_name_no_dots', result.tenant_name.replaceAll('.', ''));
+    }
   } catch (err: any) {
     core.setFailed(err);
   }

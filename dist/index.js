@@ -42,6 +42,10 @@ async function run() {
         setOutput('api_url', result.api_url);
         setOutput('terraform_api_url', result.terraform_api_url);
         setOutput('container_registry_url', result.container_registry_url);
+        if (result.tenant_name) {
+            setOutput('tenant_name', result.tenant_name);
+            setOutput('tenant_name_no_dots', result.tenant_name.replaceAll('.', ''));
+        }
     }
     catch (err) {
         core.setFailed(err);
@@ -84,13 +88,15 @@ function resolve(instanceUrl) {
         base_url: 'https://github.com',
         api_url: 'https://api.github.com',
         container_registry_url: 'https://ghcr.io',
-        terraform_api_url: 'https://api.github.com/'
+        terraform_api_url: 'https://api.github.com/',
+        tenant_name: undefined,
     };
     if (parsedUrl.hostname === 'github.com') {
         // We are on dotcom, but could be an EMU or standard dotcom
-        if (parsedUrl.pathname?.toLowerCase().startsWith('/enterprises/')) {
-            result.type = GitHubType.emu;
-        }
+        // if (parsedUrl.pathname?.toLowerCase().startsWith('/enterprises/')) {
+        //   result.type = GitHubType.emu;
+        // }
+        // Unless we do a proper lookup on the EMU enterprise, the above check is not really valid, so need a proper check if this is required going forward
     }
     else if (parsedUrl.hostname.endsWith('ghe.com')) {
         // We have a Proxima tenant
@@ -99,6 +105,7 @@ function resolve(instanceUrl) {
         result.api_url = `https://api.${parsedUrl.hostname}`;
         result.container_registry_url = `https://containers.${parsedUrl.hostname}`;
         result.terraform_api_url = `${result.api_url}/`;
+        result.tenant_name = parsedUrl.hostname.split('.')[0];
     }
     else {
         // We have a GHES instance
@@ -111,6 +118,7 @@ function resolve(instanceUrl) {
         result.terraform_api_url = `${result.api_url}/`;
         //container registry, needs to be enabled on the GHES instance, it could be disabled, but still provide a value for it
         result.container_registry_url = `https://containers.${parsedUrl.hostname}`;
+        result.tenant_name = parsedUrl.hostname;
     }
     return result;
 }
