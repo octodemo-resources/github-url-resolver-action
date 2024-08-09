@@ -10,7 +10,7 @@ describe('#resolve', () => {
     expect(result.base_url).toBe('https://github.com');
     expect(result.api_url).toBe('https://api.github.com');
     expect(result.terraform_api_url).toBe('https://api.github.com/')
-    expect(result.container_registry_url).toBe('https://ghcr.io');
+    expect(result.container_registry_url).toBe('ghcr.io');
     expect(result.tenant_name).toBeUndefined();
   });
 
@@ -21,7 +21,7 @@ describe('#resolve', () => {
     expect(result.base_url).toBe('https://octodemo-staffship.ghe.com');
     expect(result.api_url).toBe('https://api.octodemo-staffship.ghe.com');
     expect(result.terraform_api_url).toBe('https://api.octodemo-staffship.ghe.com/')
-    expect(result.container_registry_url).toBe('https://containers.octodemo-staffship.ghe.com');
+    expect(result.container_registry_url).toBe('containers.octodemo-staffship.ghe.com');
 
     expect(result.tenant_name).toBe('octodemo-staffship');
   });
@@ -34,7 +34,7 @@ describe('#resolve', () => {
     expect(result.base_url).toBe('https://github.com');
     expect(result.api_url).toBe('https://api.github.com');
     expect(result.terraform_api_url).toBe('https://api.github.com/')
-    expect(result.container_registry_url).toBe('https://ghcr.io');
+    expect(result.container_registry_url).toBe('ghcr.io');
     expect(result.tenant_name).toBeUndefined();
   });
 
@@ -45,7 +45,7 @@ describe('#resolve', () => {
     expect(result.base_url).toBe('https://octodemo.com');
     expect(result.api_url).toBe('https://octodemo.com/api/v3');
     expect(result.terraform_api_url).toBe('https://octodemo.com/api/v3/')
-    expect(result.container_registry_url).toBe('https://containers.octodemo.com');
+    expect(result.container_registry_url).toBe('containers.octodemo.com');
     expect(result.tenant_name).toBe('octodemo.com');
   })
 });

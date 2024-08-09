@@ -27,7 +27,7 @@ export function resolve(instanceUrl: string): GitHubInstanceUrls {
     type: GitHubType.dotcom,
     base_url: 'https://github.com',
     api_url: 'https://api.github.com',
-    container_registry_url: 'https://ghcr.io',
+    container_registry_url: 'ghcr.io',
     terraform_api_url: 'https://api.github.com/',
     tenant_name: undefined,
   };
@@ -43,7 +43,7 @@ export function resolve(instanceUrl: string): GitHubInstanceUrls {
     result.type = GitHubType.proxima;
     result.base_url = `https://${parsedUrl.hostname}`;
     result.api_url = `https://api.${parsedUrl.hostname}`;
-    result.container_registry_url = `https://containers.${parsedUrl.hostname}`;
+    result.container_registry_url = `containers.${parsedUrl.hostname}`;
     result.terraform_api_url = `${result.api_url}/`;
     result.tenant_name = parsedUrl.hostname.split('.')[0];
   } else {
@@ -56,7 +56,7 @@ export function resolve(instanceUrl: string): GitHubInstanceUrls {
     result.api_url = `${result.base_url}/api/v3`;
     result.terraform_api_url = `${result.api_url}/`;
     //container registry, needs to be enabled on the GHES instance, it could be disabled, but still provide a value for it
-    result.container_registry_url = `https://containers.${parsedUrl.hostname}`;
+    result.container_registry_url = `containers.${parsedUrl.hostname}`;
     result.tenant_name = parsedUrl.hostname;
   }
 
